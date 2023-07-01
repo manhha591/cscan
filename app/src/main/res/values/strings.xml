@@ -12,4 +12,18 @@
     <string name="retake">Retake</string>
     <string name="rotateDoc">RotateDoc</string>
     <string name="cropDocument">Crop Document</string>
+    <string name="saveToGallery">Save to Gallery</string>
+    <string name="rename">Rename</string>
+    <string name="delete">Delete</string>
+    <string name="ok">OK</string>
+    <string name="DocumentName">Document Name</string>
+    <string name="enterDocumentName">Enter Document Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="areUSure">Are you sure ?</string>
+    <string name="deleteThisDoc">You want to delete this Document ?</string>
+    <string name="saveAsPdf">Save as pdf</string>
+    <string name="share">Share</string>
+    <string name="username">username</string>
+    <string name="repassword">repassword</string>
+    <string name="phonenumber">Phone number</string>
 </resources>

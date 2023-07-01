@@ -12,17 +12,17 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.ExifInterface;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -39,7 +39,6 @@ import com.otaliastudios.cameraview.VideoResult;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Iterator;
 
 public class ScannerActivity extends AppCompatActivity {
     public CameraView cameraView;
@@ -59,6 +58,7 @@ public class ScannerActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onPause() {
         new Handler().postDelayed(new Runnable() {
@@ -69,10 +69,26 @@ public class ScannerActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (ContextCompat.checkSelfPermission(this, "android.permission.CAMERA") == PackageManager.PERMISSION_GRANTED) {
+            cameraView.open();
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, "android.permission.CAMERA")) {
+            // ConfirmationDialogFragment.newInstance(R.string.camera_permission_confirmation, new String[]{"android.permission.CAMERA"}, 1, R.string.camera_permission_not_granted).show(getSupportFragmentManager(), FRAGMENT_DIALOG);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{"android.permission.CAMERA"}, 1);
+        }
+
+
+    }
+
 
     private void init() {
         iv_take_picture = (ImageView) findViewById(R.id.iv_take_picture);
         iv_back_camera = (ImageView) findViewById(R.id.iv_back_camera);
+        // iv_gallery = (ImageView) findViewById(R.id.iv_gallery);
+
 
     }
 
@@ -90,7 +106,16 @@ public class ScannerActivity extends AppCompatActivity {
                 } else {
                     return;
                 }
+            case R.id.iv_gallery:
+                openImagePicker();
+                return;
         }
+    }
+
+    private void openImagePicker() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, 1);
     }
 
     private void bindView() {
@@ -103,26 +128,26 @@ public class ScannerActivity extends AppCompatActivity {
                     byte[] data = result.getData();
                     Log.e(TAG, "onPictureTaken " + data.length);
                     Toast.makeText(ScannerActivity.this, "Picture Taken", Toast.LENGTH_SHORT).show();
-                    if (Constant.current_camera_view.equals("Document") && Constant.card_type.equals("Single")) {
-                        File externalFilesDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-                        File file = new File(externalFilesDir, System.currentTimeMillis() + ".jpg");
-                        try {
-                            FileOutputStream fileOutputStream = new FileOutputStream(file);
-                            fileOutputStream.write(data);
-                            fileOutputStream.close();
-                            Bitmap decodeByteArray = BitmapFactory.decodeByteArray(data, 0, data.length);
-                            Bitmap scalePreserveRatio = scalePreserveRatio(decodeByteArray, decodeByteArray.getWidth() / 2, decodeByteArray.getHeight() / 2);
-                            int cameraPhotoOrientation = getCameraPhotoOrientation(file.getPath());
-                            Matrix matrix = new Matrix();
-                            matrix.postRotate((float) cameraPhotoOrientation);
-                            Constant.original = Bitmap.createBitmap(scalePreserveRatio, 0, 0, scalePreserveRatio.getWidth(), scalePreserveRatio.getHeight(), matrix, true);
 
-                            startActivity(new Intent(ScannerActivity.this, CropDocumentActivity.class));
-                            finish();
-                        } catch (IOException e) {
-                            Log.w(TAG, "Cannot write to " + file, e);
-                        }
+                    File externalFilesDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                    File file = new File(externalFilesDir, System.currentTimeMillis() + ".jpg");
+                    try {
+                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+                        fileOutputStream.write(data);
+                        fileOutputStream.close();
+                        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(data, 0, data.length);
+                        Bitmap scalePreserveRatio = scalePreserveRatio(decodeByteArray, decodeByteArray.getWidth() / 2, decodeByteArray.getHeight() / 2);
+                        int cameraPhotoOrientation = getCameraPhotoOrientation(file.getPath());
+                        Matrix matrix = new Matrix();
+                        matrix.postRotate((float) cameraPhotoOrientation);
+                        Constant.original = Bitmap.createBitmap(scalePreserveRatio, 0, 0, scalePreserveRatio.getWidth(), scalePreserveRatio.getHeight(), matrix, true);
+
+                        startActivity(new Intent(ScannerActivity.this, CropDocumentActivity.class));
+                        finish();
+                    } catch (IOException e) {
+                        Log.w(TAG, "Cannot write to " + file, e);
                     }
+
                 }
 
                 @Override
@@ -133,27 +158,9 @@ public class ScannerActivity extends AppCompatActivity {
                 // And much more
             });
         }
-        Constant.card_type = "Single";
-        if (Constant.current_tag.equals("All Docs")) {
-            Constant.current_camera_view = "Document";
-        }
-    }
-
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (ContextCompat.checkSelfPermission(this, "android.permission.CAMERA") == PackageManager.PERMISSION_GRANTED) {
-            cameraView.open();
-        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, "android.permission.CAMERA")) {
-            // ConfirmationDialogFragment.newInstance(R.string.camera_permission_confirmation, new String[]{"android.permission.CAMERA"}, 1, R.string.camera_permission_not_granted).show(getSupportFragmentManager(), FRAGMENT_DIALOG);
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{"android.permission.CAMERA"}, 1);
-        }
-
 
     }
+
 
     public static int getCameraPhotoOrientation(String str) {
         try {
@@ -203,62 +210,23 @@ public class ScannerActivity extends AppCompatActivity {
         canvas.drawBitmap(createScaledBitmap, f8, f7, (Paint) null);
         return createBitmap;
     }
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//        if (ImagePicker.shouldHandleResult(requestCode, resultCode, intent, 100)) {
-//            Iterator<Image> it = ImagePicker.getImages(intent).iterator();
-//            while (it.hasNext()) {
-//                Image next = it.next();
-//                if (Build.VERSION.SDK_INT >= 29) {
-//                    Glide.with(getApplicationContext()).asBitmap().load(next.getUri()).into(new SimpleTarget<Bitmap>() {
-//                        @Override
-//                        public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
-//                            if (Constant.original != null) {
-//                                Constant.original.recycle();
-//                                System.gc();
-//                            }
-//                            Constant.original = bitmap;
-//                            Constant.IdentifyActivity = "CropDocumentActivity2";
-//                            AdsUtils.showGoogleInterstitialAd(ScannerActivity.this, false);
-//                        }
-//                    });
-//                } else {
-//                    Glide.with(getApplicationContext()).asBitmap().load(next.getPath()).into(new SimpleTarget<Bitmap>() {
-//                        @Override
-//                        public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
-//                            if (Constant.original != null) {
-//                                Constant.original.recycle();
-//                                System.gc();
-//                            }
-//                            Constant.original = bitmap;
-//                            Constant.IdentifyActivity = "CropDocumentActivity2";
-//                            AdsUtils.showGoogleInterstitialAd(ScannerActivity.this, false);
-//                        }
-//                    });
-//                }
-//            }
-//        }
-//        if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
-//            if (sourceUri != null) {
-//                getContentResolver().delete(sourceUri, (String) null, (String[]) null);
-//            }
-//            handleCropResult(intent);
-//        }
-//        if (resultCode == UCrop.RESULT_ERROR) {
-//            if (sourceUri != null) {
-//                getContentResolver().delete(sourceUri, (String) null, (String[]) null);
-//            }
-//            handleCropError(intent);
-//        }
-//        /*if (resultCode == 394) {
-//            if (sourceUri != null) {
-//                getContentResolver().delete(sourceUri, (String) null, (String[]) null);
-//            }
-//            handleCropResult(intent);
-//        }*/
-//
-//        super.onActivityResult(requestCode, resultCode, intent);
-//    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                Constant.original = bitmap;
+                startActivity(new Intent(ScannerActivity.this, CropDocumentActivity.class));
+                finish();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     public static class ConfirmationDialogFragment extends DialogFragment {
         private static final String ARG_MESSAGE = "message";

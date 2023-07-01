@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/dialog_main"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@color/dialog_bg_color"
+    android:orientation="vertical"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
+    android:paddingBottom="7dp">
+
+    <TextView
+        android:id="@+id/tv_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="Meetings notes.pdf"
+        android:textColor="@color/txt_color"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/tv_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="14dp"
+        android:gravity="center"
+        android:maxLength="11"
+        android:text="2020-08-14"
+        android:textColor="@color/unselected_txt_color"
+        android:textSize="11dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#888888" />
+
+    <ScrollView
+        android:id="@+id/scrLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dialog_bg_color"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/dialog_bg_color"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_save_to_gallery"
+                android:layout_width="match_parent"
+                android:layout_height="42dp">
+
+                <ImageView
+                    android:id="@+id/iv_save_gallery"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_save_as_gallery" />
+
+                <TextView
+                    android:id="@+id/txtGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/iv_save_gallery"
+                    android:text="@string/saveToGallery"
+                    android:textColor="@color/txt_color"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#888888" />
+
+            <RelativeLayout
+                android:id="@+id/rl_delete"
+                android:layout_width="match_parent"
+                android:layout_height="42dp">
+
+                <ImageView
+                    android:id="@+id/iv_delete"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_delete" />
+
+                <TextView
+                    android:id="@+id/txtDelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/iv_delete"
+                    android:text="@string/delete"
+                    android:textColor="@color/txt_color"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

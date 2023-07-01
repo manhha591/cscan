@@ -51,16 +51,6 @@
                         android:textSize="16dp" />
 
 
-                    <ImageView
-                        android:id="@+id/iv_switch_flash"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="8dp"
-                        android:onClick="onClick"
-                        android:src="@drawable/ic_flash_auto" />
-
                 </RelativeLayout>
 
             </LinearLayout>
@@ -90,7 +80,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/toolbar_color"
+                android:background="#6a5acd"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -130,335 +120,335 @@
         </LinearLayout>
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/ly_crop"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:background="@color/bg_color1"-->
-<!--        android:visibility="gone">-->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/ly_crop"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:background="@color/bg_color1"-->
+    <!--        android:visibility="gone">-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:orientation="vertical">-->
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="0dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:orientation="vertical">-->
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                android:background="@color/white">-->
+    <!--            <RelativeLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="?attr/actionBarSize"-->
+    <!--                android:background="@color/white">-->
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_back_crop"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_marginStart="2dp"-->
-<!--                    android:onClick="onClick"-->
-<!--                    android:padding="7dp"-->
-<!--                    android:src="@drawable/ic_back" />-->
+    <!--                <ImageView-->
+    <!--                    android:id="@+id/iv_back_crop"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_centerVertical="true"-->
+    <!--                    android:layout_marginStart="2dp"-->
+    <!--                    android:onClick="onClick"-->
+    <!--                    android:padding="7dp"-->
+    <!--                    android:src="@drawable/ic_back" />-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_toEndOf="@+id/iv_back_crop"-->
-<!--                    android:text="Crop Document"-->
-<!--                    android:layout_marginLeft="8dp"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="15dp" />-->
-<!--            </RelativeLayout>-->
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_centerVertical="true"-->
+    <!--                    android:layout_toEndOf="@+id/iv_back_crop"-->
+    <!--                    android:text="Crop Document"-->
+    <!--                    android:layout_marginLeft="8dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="15dp" />-->
+    <!--            </RelativeLayout>-->
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
+    <!--            <RelativeLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent">-->
 
-<!--                <FrameLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_above="@+id/ly_bottom"-->
-<!--                    android:layout_margin="12dp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="vertical">-->
+    <!--                <FrameLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:layout_above="@+id/ly_bottom"-->
+    <!--                    android:layout_margin="12dp"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:orientation="vertical">-->
 
-<!--                    <me.pqpo.smartcropperlib.view.CropImageView-->
-<!--                        android:id="@+id/iv_card_crop"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:padding="12dp"-->
-<!--                        app:civLineColor="@color/light_txt_color"-->
-<!--                        app:civMagnifierCrossColor="@color/light_txt_color"-->
-<!--                        app:civPointColor="@color/light_txt_color"-->
-<!--                        app:civPointFillAlpha="35"-->
-<!--                        app:civPointFillColor="@color/light_txt_color"-->
-<!--                        app:civShowEdgeMidPoint="true" />-->
-<!--                </FrameLayout>-->
+    <!--                    <me.pqpo.smartcropperlib.view.CropImageView-->
+    <!--                        android:id="@+id/iv_card_crop"-->
+    <!--                        android:layout_width="match_parent"-->
+    <!--                        android:layout_height="match_parent"-->
+    <!--                        android:layout_gravity="center"-->
+    <!--                        android:padding="12dp"-->
+    <!--                        app:civLineColor="@color/light_txt_color"-->
+    <!--                        app:civMagnifierCrossColor="@color/light_txt_color"-->
+    <!--                        app:civPointColor="@color/light_txt_color"-->
+    <!--                        app:civPointFillAlpha="35"-->
+    <!--                        app:civPointFillColor="@color/light_txt_color"-->
+    <!--                        app:civShowEdgeMidPoint="true" />-->
+    <!--                </FrameLayout>-->
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/ly_bottom"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:background="@color/toolbar_color"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:paddingTop="12dp"-->
-<!--                    android:paddingBottom="15dp">-->
+    <!--                <LinearLayout-->
+    <!--                    android:id="@+id/ly_bottom"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_alignParentBottom="true"-->
+    <!--                    android:background="@color/toolbar_color"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:orientation="vertical"-->
+    <!--                    android:paddingTop="12dp"-->
+    <!--                    android:paddingBottom="15dp">-->
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginBottom="10dp"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="horizontal">-->
+    <!--                    <LinearLayout-->
+    <!--                        android:layout_width="match_parent"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_marginBottom="10dp"-->
+    <!--                        android:gravity="center"-->
+    <!--                        android:orientation="horizontal">-->
 
-<!--                        <LinearLayout-->
-<!--                            android:id="@+id/ly_rotate_doc"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginEnd="7dp"-->
-<!--                            android:onClick="onClick"-->
-<!--                            android:orientation="vertical"-->
-<!--                            android:padding="5dp">-->
+    <!--                        <LinearLayout-->
+    <!--                            android:id="@+id/ly_rotate_doc"-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_marginEnd="7dp"-->
+    <!--                            android:onClick="onClick"-->
+    <!--                            android:orientation="vertical"-->
+    <!--                            android:padding="5dp">-->
 
-<!--                            <ImageView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_gravity="center"-->
-<!--                                android:tint="@color/bg_color1"-->
-<!--                                android:src="@drawable/ic_rotate_doc" />-->
+    <!--                            <ImageView-->
+    <!--                                android:layout_width="wrap_content"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_gravity="center"-->
+    <!--                                android:tint="@color/bg_color1"-->
+    <!--                                android:src="@drawable/ic_rotate_doc" />-->
 
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_gravity="center_vertical"-->
+    <!--                            <TextView-->
+    <!--                                android:layout_width="wrap_content"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_gravity="center_vertical"-->
 
-<!--                                android:text="Rotate Doc"-->
-<!--                                android:layout_marginTop="3dp"-->
-<!--                                android:textColor="@color/bg_color1"-->
-<!--                                android:textSize="12dp" />-->
-<!--                        </LinearLayout>-->
+    <!--                                android:text="Rotate Doc"-->
+    <!--                                android:layout_marginTop="3dp"-->
+    <!--                                android:textColor="@color/bg_color1"-->
+    <!--                                android:textSize="12dp" />-->
+    <!--                        </LinearLayout>-->
 
-<!--                    </LinearLayout>-->
+    <!--                    </LinearLayout>-->
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="horizontal">-->
+    <!--                    <LinearLayout-->
+    <!--                        android:layout_width="match_parent"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:gravity="center"-->
+    <!--                        android:orientation="horizontal">-->
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/iv_retake"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:onClick="onClick"-->
-<!--                            android:textSize="13dp"-->
-<!--                            android:fontFamily="@font/inter_regular"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:text="@string/retake"-->
-<!--                            android:background="@drawable/white_bg"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:layout_marginLeft="8dp"-->
-<!--                            android:layout_marginRight="5dp"-->
-<!--                            android:gravity="center" />-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/iv_continue"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:onClick="onClick"-->
-<!--                            android:textSize="13dp"-->
-<!--                            android:background="@drawable/white_bg"-->
-<!--                            android:fontFamily="@font/inter_regular"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:text="@string/continue1"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:layout_marginRight="8dp"-->
-<!--                            android:gravity="center" />-->
+    <!--                        <TextView-->
+    <!--                            android:id="@+id/iv_retake"-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_weight="1"-->
+    <!--                            android:onClick="onClick"-->
+    <!--                            android:textSize="13dp"-->
+    <!--                            android:fontFamily="@font/inter_regular"-->
+    <!--                            android:textColor="@color/black"-->
+    <!--                            android:text="@string/retake"-->
+    <!--                            android:background="@drawable/white_bg"-->
+    <!--                            android:padding="5dp"-->
+    <!--                            android:layout_marginLeft="8dp"-->
+    <!--                            android:layout_marginRight="5dp"-->
+    <!--                            android:gravity="center" />-->
+    <!--                        <TextView-->
+    <!--                            android:id="@+id/iv_continue"-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_weight="1"-->
+    <!--                            android:onClick="onClick"-->
+    <!--                            android:textSize="13dp"-->
+    <!--                            android:background="@drawable/white_bg"-->
+    <!--                            android:fontFamily="@font/inter_regular"-->
+    <!--                            android:textColor="@color/black"-->
+    <!--                            android:text="@string/continue1"-->
+    <!--                            android:padding="5dp"-->
+    <!--                            android:layout_marginLeft="5dp"-->
+    <!--                            android:layout_marginRight="8dp"-->
+    <!--                            android:gravity="center" />-->
 
-<!--                    </LinearLayout>-->
-<!--                </LinearLayout>-->
-<!--            </RelativeLayout>-->
-<!--        </LinearLayout>-->
-<!--    </LinearLayout>-->
+    <!--                    </LinearLayout>-->
+    <!--                </LinearLayout>-->
+    <!--            </RelativeLayout>-->
+    <!--        </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/ly_filter"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:background="@color/bg_color1"-->
-<!--        android:visibility="gone">-->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/ly_filter"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:background="@color/bg_color1"-->
+    <!--        android:visibility="gone">-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:orientation="vertical">-->
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="0dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:orientation="vertical">-->
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                android:background="@color/white">-->
+    <!--            <RelativeLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="?attr/actionBarSize"-->
+    <!--                android:background="@color/white">-->
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_back_filter"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_marginStart="2dp"-->
-<!--                    android:onClick="onClick"-->
-<!--                    android:padding="7dp"-->
-<!--                    android:src="@drawable/ic_back" />-->
+    <!--                <ImageView-->
+    <!--                    android:id="@+id/iv_back_filter"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_centerVertical="true"-->
+    <!--                    android:layout_marginStart="2dp"-->
+    <!--                    android:onClick="onClick"-->
+    <!--                    android:padding="7dp"-->
+    <!--                    android:src="@drawable/ic_back" />-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_toEndOf="@+id/iv_back_filter"-->
-<!--                    android:fontFamily="@font/inter_medium"-->
-<!--                    android:layout_marginLeft="5dp"-->
-<!--                    android:text="Current Filter"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="15dp" />-->
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_centerVertical="true"-->
+    <!--                    android:layout_toEndOf="@+id/iv_back_filter"-->
+    <!--                    android:fontFamily="@font/inter_medium"-->
+    <!--                    android:layout_marginLeft="5dp"-->
+    <!--                    android:text="Current Filter"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="15dp" />-->
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_done_filter"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_marginEnd="7dp"-->
-<!--                    android:onClick="onClick"-->
-<!--                    android:padding="6dp"-->
-<!--                    android:src="@drawable/ic_check_mark" />-->
-<!--            </RelativeLayout>-->
+    <!--                <ImageView-->
+    <!--                    android:id="@+id/iv_done_filter"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_alignParentEnd="true"-->
+    <!--                    android:layout_centerVertical="true"-->
+    <!--                    android:layout_marginEnd="7dp"-->
+    <!--                    android:onClick="onClick"-->
+    <!--                    android:padding="6dp"-->
+    <!--                    android:src="@drawable/ic_check_mark" />-->
+    <!--            </RelativeLayout>-->
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
+    <!--            <RelativeLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent">-->
 
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_above="@+id/ly_bottom_filter"-->
-<!--                    android:layout_centerInParent="true"-->
-<!--                    android:layout_margin="15dp">-->
+    <!--                <RelativeLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:layout_above="@+id/ly_bottom_filter"-->
+    <!--                    android:layout_centerInParent="true"-->
+    <!--                    android:layout_margin="15dp">-->
 
-<!--                    <com.github.chrisbanes.photoview.PhotoView-->
-<!--                        android:id="@+id/iv_card_filter"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_centerInParent="true" />-->
-<!--                </RelativeLayout>-->
+    <!--                    <com.github.chrisbanes.photoview.PhotoView-->
+    <!--                        android:id="@+id/iv_card_filter"-->
+    <!--                        android:layout_width="match_parent"-->
+    <!--                        android:layout_height="match_parent"-->
+    <!--                        android:layout_centerInParent="true" />-->
+    <!--                </RelativeLayout>-->
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/ly_bottom_filter"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:background="@color/toolbar_color"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingTop="15dp"-->
-<!--                    android:paddingBottom="15dp">-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="vertical">-->
+    <!--                <LinearLayout-->
+    <!--                    android:id="@+id/ly_bottom_filter"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_alignParentBottom="true"-->
+    <!--                    android:background="@color/toolbar_color"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:orientation="horizontal"-->
+    <!--                    android:paddingTop="15dp"-->
+    <!--                    android:paddingBottom="15dp">-->
+    <!--                    <LinearLayout-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_weight="1"-->
+    <!--                        android:gravity="center"-->
+    <!--                        android:orientation="vertical">-->
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/iv_original"-->
-<!--                            android:layout_width="30dp"-->
-<!--                            android:layout_height="32dp"-->
-<!--                            android:background="@drawable/filter_selection_bg"-->
-<!--                            android:fontFamily="@font/inter_medium"-->
-<!--                            android:gravity="center"-->
-<!--                            android:onClick="onClick"-->
-<!--                            android:text="O"-->
-<!--                            android:textColor="@color/white"-->
-<!--                            android:textSize="18dp" />-->
+    <!--                        <TextView-->
+    <!--                            android:id="@+id/iv_original"-->
+    <!--                            android:layout_width="30dp"-->
+    <!--                            android:layout_height="32dp"-->
+    <!--                            android:background="@drawable/filter_selection_bg"-->
+    <!--                            android:fontFamily="@font/inter_medium"-->
+    <!--                            android:gravity="center"-->
+    <!--                            android:onClick="onClick"-->
+    <!--                            android:text="O"-->
+    <!--                            android:textColor="@color/white"-->
+    <!--                            android:textSize="18dp" />-->
 
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="5dp"-->
-<!--                            android:fontFamily="@font/inter_medium"-->
-<!--                            android:text="@string/original"-->
-<!--                            android:textColor="@color/white"-->
-<!--                            android:textSize="10dp" />-->
+    <!--                        <TextView-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_marginTop="5dp"-->
+    <!--                            android:fontFamily="@font/inter_medium"-->
+    <!--                            android:text="@string/original"-->
+    <!--                            android:textColor="@color/white"-->
+    <!--                            android:textSize="10dp" />-->
 
-<!--                    </LinearLayout>-->
+    <!--                    </LinearLayout>-->
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="vertical">-->
+    <!--                    <LinearLayout-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_weight="1"-->
+    <!--                        android:gravity="center"-->
+    <!--                        android:orientation="vertical">-->
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/iv_color"-->
-<!--                            android:layout_width="30dp"-->
-<!--                            android:layout_height="32dp"-->
-<!--                            android:background="@drawable/filter_bg"-->
-<!--                            android:fontFamily="@font/inter_medium"-->
-<!--                            android:gravity="center"-->
-<!--                            android:onClick="onClick"-->
-<!--                            android:text="C"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:textSize="18dp" />-->
+    <!--                        <TextView-->
+    <!--                            android:id="@+id/iv_color"-->
+    <!--                            android:layout_width="30dp"-->
+    <!--                            android:layout_height="32dp"-->
+    <!--                            android:background="@drawable/filter_bg"-->
+    <!--                            android:fontFamily="@font/inter_medium"-->
+    <!--                            android:gravity="center"-->
+    <!--                            android:onClick="onClick"-->
+    <!--                            android:text="C"-->
+    <!--                            android:textColor="@color/black"-->
+    <!--                            android:textSize="18dp" />-->
 
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="5dp"-->
-<!--                            android:fontFamily="@font/inter_medium"-->
-<!--                            android:text="@string/color"-->
-<!--                            android:textColor="@color/white"-->
-<!--                            android:textSize="10dp" />-->
+    <!--                        <TextView-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_marginTop="5dp"-->
+    <!--                            android:fontFamily="@font/inter_medium"-->
+    <!--                            android:text="@string/color"-->
+    <!--                            android:textColor="@color/white"-->
+    <!--                            android:textSize="10dp" />-->
 
-<!--                    </LinearLayout>-->
+    <!--                    </LinearLayout>-->
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="vertical">-->
+    <!--                    <LinearLayout-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_weight="1"-->
+    <!--                        android:gravity="center"-->
+    <!--                        android:orientation="vertical">-->
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/iv_sharp_black"-->
-<!--                            android:layout_width="30dp"-->
-<!--                            android:layout_height="32dp"-->
-<!--                            android:background="@drawable/filter_bg"-->
-<!--                            android:fontFamily="@font/inter_medium"-->
-<!--                            android:gravity="center"-->
-<!--                            android:onClick="onClick"-->
-<!--                            android:text="S"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:textSize="18dp" />-->
+    <!--                        <TextView-->
+    <!--                            android:id="@+id/iv_sharp_black"-->
+    <!--                            android:layout_width="30dp"-->
+    <!--                            android:layout_height="32dp"-->
+    <!--                            android:background="@drawable/filter_bg"-->
+    <!--                            android:fontFamily="@font/inter_medium"-->
+    <!--                            android:gravity="center"-->
+    <!--                            android:onClick="onClick"-->
+    <!--                            android:text="S"-->
+    <!--                            android:textColor="@color/black"-->
+    <!--                            android:textSize="18dp" />-->
 
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="5dp"-->
-<!--                            android:fontFamily="@font/inter_medium"-->
-<!--                            android:text="@string/sharpBlack"-->
-<!--                            android:textColor="@color/white"-->
-<!--                            android:textSize="10dp" />-->
+    <!--                        <TextView-->
+    <!--                            android:layout_width="wrap_content"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_marginTop="5dp"-->
+    <!--                            android:fontFamily="@font/inter_medium"-->
+    <!--                            android:text="@string/sharpBlack"-->
+    <!--                            android:textColor="@color/white"-->
+    <!--                            android:textSize="10dp" />-->
 
-<!--                    </LinearLayout>-->
+    <!--                    </LinearLayout>-->
 
-<!--                </LinearLayout>-->
-<!--            </RelativeLayout>-->
-<!--        </LinearLayout>-->
-<!--    </LinearLayout>-->
+    <!--                </LinearLayout>-->
+    <!--            </RelativeLayout>-->
+    <!--        </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
 </RelativeLayout>

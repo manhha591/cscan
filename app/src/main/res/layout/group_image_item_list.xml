@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/docLayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="6dp">
+
+        <com.example.cscan.document_view.roundshapeImageview
+            android:id="@+id/iv_doc"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_ly_bg">
+
+            <TextView
+                android:id="@+id/tv_doc_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
+                android:singleLine="true"
+                android:text="Page  1"
+                android:textColor="#FFFFFF"
+                android:textSize="12dp" />
+
+            <ImageView
+                android:id="@+id/iv_doc_item_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingStart="12dp"
+                android:paddingTop="7dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="7dp"
+                android:src="@drawable/ic_delete"
+                app:tint="#FF0000" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

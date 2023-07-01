@@ -70,7 +70,6 @@
                     android:orientation="vertical">
 
 
-
                     <me.pqpo.smartcropperlib.view.CropImageView
                         android:id="@+id/iv_preview_crop"
                         android:layout_width="match_parent"
@@ -94,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:background="@color/toolbar_color"
+                android:background="#6a5acd"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="12dp"
@@ -118,7 +117,7 @@
                         android:gravity="center"
                         android:onClick="onClick"
                         android:padding="5dp"
-                        android:text="@string/retake"
+                        android:text="capture again"
                         android:textColor="@color/black"
                         android:textSize="13dp" />
 

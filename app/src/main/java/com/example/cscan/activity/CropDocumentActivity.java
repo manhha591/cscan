@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -16,42 +16,36 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.cscan.R;
 import com.example.cscan.main_utils.AdjustUtil;
 import com.example.cscan.main_utils.BitmapUtils;
 import com.example.cscan.main_utils.Constant;
+import com.example.cscan.models.GroupImage;
+import com.example.cscan.models.Images;
+import com.example.cscan.service.IApiUserService;
+import com.example.cscan.service.InsertGroupCallback;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 import me.pqpo.smartcropperlib.view.CropImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CropDocumentActivity extends AppCompatActivity {
     private CropImageView iv_preview_crop;
     protected ImageView iv_done;
     public String selected_group_name;
     protected TextView iv_retake;
+    protected ImageView iv_back;
     public Bitmap original;
     public String username = "HA";
+    public GroupImage group_current;
     protected TextView iv_Rotate_Doc;
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -70,8 +64,8 @@ public class CropDocumentActivity extends AppCompatActivity {
     };
     private String group_name;
     private String group_date;
-    private String URL_Insert_Group="http://192.168.56.241/android/insertGroup.php";
-
+    private int group_id = 0;
+    private int user_id;
 
 
     @Override
@@ -89,6 +83,8 @@ public class CropDocumentActivity extends AppCompatActivity {
         iv_done = (ImageView) findViewById(R.id.iv_done);
         iv_retake = (TextView) findViewById(R.id.iv_retake);
         iv_Rotate_Doc = (TextView) findViewById(R.id.iv_Rotate_Doc);
+        iv_back = findViewById(R.id.iv_back);
+
         if (Constant.original != null) {
             iv_preview_crop.setImageToCrop(Constant.original);
             original = Constant.original;
@@ -96,17 +92,30 @@ public class CropDocumentActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_done:
                 if (iv_preview_crop.canRightCrop()) {
+
                     Constant.original = iv_preview_crop.crop();
-                    insertImage();
-                    Intent intent2 = new Intent(CropDocumentActivity.this, GroupDocumentActivity.class);
-                    intent2.putExtra("current_group", group_name);
-                    startActivity(intent2);
-                    finish();
-                    return;
+
+                    if (Constant.inputType.equals("Group")) {
+                        group_name = "CamScanner" + Constant.getDateTime("_ddMMHHmmss");
+                        group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
+                        insertGroupImage(group_name, group_date, 1, new InsertGroupCallback() {
+                            @Override
+                            public void onGroupInserted(GroupImage group) {
+                                Constant.group_current = group;
+                                System.out.println(Constant.group_current);
+                                insertImage();
+
+                            }
+                        });
+                    } else {
+                        insertImage();
+                    }
+
                 }
                 return;
             case R.id.iv_retake:
@@ -126,6 +135,9 @@ public class CropDocumentActivity extends AppCompatActivity {
                 iv_preview_crop.setFullImgCrop();
                 Log.e(TAG, "onClick: Rotate");
                 return;
+            case R.id.iv_back:
+                finish();
+                return;
         }
     }
 
@@ -133,9 +145,36 @@ public class CropDocumentActivity extends AppCompatActivity {
         iv_preview_crop.setImageBitmap(AdjustUtil.changeBitmapContrastBrightness(original, 1.0f, brightness));
     }
 
-    public static final String URL_Insert_Image = "http://192.168.56.241/android/insertImage.php";
+    private void insertGroupImage(String group_name, String group_date, int userId, InsertGroupCallback callback) {
+        GroupImage group = new GroupImage(group_name, group_date, Constant.user_current.getUserId());
+        IApiUserService.apiService.insertGroup(group)
+                .enqueue(new Callback<GroupImage>() {
+                    @Override
+                    public void onResponse(Call<GroupImage> call, Response<GroupImage> response) {
+                        if (response.isSuccessful()) {
+                            GroupImage group_current = response.body();
+                            System.out.println(group_current);
+                            //Toast.makeText(CropDocumentActivity.this, "Đăng kí thành công!", Toast.LENGTH_LONG).show();
+                            callback.onGroupInserted(group_current);
+                        } else {
+                            // Toast.makeText(CropDocumentActivity.this, "Đăng kí thất bại!", Toast.LENGTH_LONG).show();
+                            Log.e("API Response", "Request URL: " + call.request().url());
+                            Log.e("API Response", "Response Code: " + response.code());
+                            Log.e("API Response", "Response Message: " + response.message());
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(retrofit2.Call<GroupImage> call, Throwable t) {
+                        Toast.makeText(CropDocumentActivity.this, "Call api error", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void insertImage() {
+
         Bitmap bitmap = Constant.original;
         byte[] bytes = BitmapUtils.getBytes(bitmap);
         File externalFilesDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
@@ -146,76 +185,37 @@ public class CropDocumentActivity extends AppCompatActivity {
             fileOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } if (Constant.inputType.equals("Group")) {
-            group_name = "CamScanner" + Constant.getDateTime("_ddMMHHmmss");
-            group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
-            insertGroup(group_name, group_date);
-        }else {
-            group_name = GroupDocumentActivity.current_group;
-
         }
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_Insert_Image,
-                new Response.Listener<String>() {
+
+        group_id = Constant.group_current.getGroupId();
+        group_name = Constant.group_current.getGroupName();
+        Images image = new Images(file.getPath(), group_id);
+        IApiUserService.apiService.insertImage(image)
+                .enqueue(new Callback<Images>() {
                     @Override
-                    public void onResponse(String response) {
-                        if (response.trim().equals("success")) {
-                            Toast.makeText(CropDocumentActivity.this, "Thêm ảnh thành công", Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call<Images> call, Response<Images> response) {
+                        if (response.isSuccessful()) {
+                            Images img = response.body();
+                            System.out.println(img);
+                            //Toast.makeText(CropDocumentActivity.this, "!", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(CropDocumentActivity.this, "Lỗi thêm ảnh", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(CropDocumentActivity.this, "Đăng kí thất bại!", Toast.LENGTH_LONG).show();
+                            Log.e("API Response", "Request URL: " + call.request().url());
+                            Log.e("API Response", "Response Code: " + response.code());
+                            Log.e("API Response", "Response Message: " + response.message());
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(CropDocumentActivity.this, "Xảy ra lỗi", Toast.LENGTH_SHORT).show();
-                        Log.e("Volley Error", error.toString());
-                    }
-                }) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("fileImage", file.getPath());
-                params.put("groupName", group_name);
-                return params;
-            }
-        };
 
-        requestQueue.add(stringRequest);
-    }
-    private void insertGroup(String group_name, String group_date) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_Insert_Group,
-                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-                        if (response.trim().equals("success")) {
-                        } else {
-                        }
+                    public void onFailure(Call<Images> call, Throwable t) {
+                        Toast.makeText(CropDocumentActivity.this, "Call api error", Toast.LENGTH_LONG).show();
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(CropDocumentActivity.this, "Xảy ra lỗi", Toast.LENGTH_SHORT).show();
-                        Log.e("Volley Error", error.toString());
-                    }
-                }) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("groupName", group_name);
-                params.put("groupDate", group_date);
-                params.put("username", "ha");
-
-                return params;
-            }
-        };
-
-        requestQueue.add(stringRequest);
+                });
+        Intent intent2 = new Intent(CropDocumentActivity.this, GroupDocumentActivity.class);
+        intent2.putExtra("current_group", group_name);
+        startActivity(intent2);
+        finish();
+        return;
     }
 
 
