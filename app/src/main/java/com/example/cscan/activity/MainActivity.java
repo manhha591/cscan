@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
                             imageDatas.add(images.getImageData());
                         }
                         String outputDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-                        String outputFilePath = outputDir + File.separator + Constant.group_current.getGroupName() + ".pdf";
+                        String outputFilePath = outputDir + File.separator + groupImage.getGroupName() + ".pdf";
                         ImageToPdfConverter.convertToPdf(imageDatas, outputFilePath);
 
                     }

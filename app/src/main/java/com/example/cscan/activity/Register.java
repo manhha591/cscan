@@ -1,13 +1,16 @@
 package com.example.cscan.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cscan.R;
@@ -22,7 +25,7 @@ import retrofit2.Response;
 
 public class Register extends AppCompatActivity {
     Button btn_reg;
-    EditText txt_user, txt_pass, txt_email, txt_sdt;
+    EditText txt_user, txt_pass, txt_repass, txt_email, txt_sdt;
 
     int requestCode;
     private ProgressBar loadingPB;
@@ -36,6 +39,7 @@ public class Register extends AppCompatActivity {
         txt_email = findViewById(R.id.email);
         txt_sdt = findViewById(R.id.phonenumber);
         txt_pass = findViewById(R.id.password);
+        txt_repass = findViewById(R.id.repassword);
 
         btn_reg = findViewById(R.id.btnReg);
         btn_reg.setOnClickListener(new View.OnClickListener() {
@@ -47,10 +51,27 @@ public class Register extends AppCompatActivity {
                 String phoneNumber = txt_sdt.getText().toString();
 
 
-                if (username.isEmpty() && password.isEmpty() && email.isEmpty() && phoneNumber.isEmpty()) {
+
+                if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty()) {
                     Toast.makeText(Register.this, "Bạn cần nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if(txt_pass.length() != txt_repass.length()){
+                    showAlertDialog("Lỗi", "Mật khẩu không khớp");
+                    return;
+                }
+
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    showAlertDialog("Lỗi", "Email không hợp lệ");
+                    return;
+                }
+
+                if (phoneNumber.length() != 10) {
+                    showAlertDialog("Lỗi", "Số điện thoại phải có 10 chữ số");
+                    return;
+                }
+
                 User us = new User(username, password, email, phoneNumber);
                 callApiRegister(us, new CallbackUser() {
                     @Override
@@ -61,6 +82,20 @@ public class Register extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void showAlertDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void callApiRegister(User user, CallbackUser callback) {

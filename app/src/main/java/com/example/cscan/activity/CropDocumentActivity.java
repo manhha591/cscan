@@ -41,12 +41,12 @@ public class CropDocumentActivity extends AppCompatActivity {
     private CropImageView iv_preview_crop;
     protected ImageView iv_done;
     public String selected_group_name;
-    protected TextView iv_retake;
+    protected ImageView iv_retake;
     protected ImageView iv_back;
     public Bitmap original;
     public String username = "HA";
     public GroupImage group_current;
-    protected TextView iv_Rotate_Doc;
+    protected ImageView iv_Rotate_Doc;
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -81,14 +81,14 @@ public class CropDocumentActivity extends AppCompatActivity {
     private void init() {
         iv_preview_crop = (CropImageView) findViewById(R.id.iv_preview_crop);
         iv_done = (ImageView) findViewById(R.id.iv_done);
-        iv_retake = (TextView) findViewById(R.id.iv_retake);
-        iv_Rotate_Doc = (TextView) findViewById(R.id.iv_Rotate_Doc);
+        iv_retake = findViewById(R.id.iv_retake);
+        iv_Rotate_Doc =  findViewById(R.id.iv_Rotate_Doc);
         iv_back = findViewById(R.id.iv_back);
 
         if (Constant.original != null) {
             iv_preview_crop.setImageToCrop(Constant.original);
             original = Constant.original;
-            changeBrightness(20);
+            //changeBrightness(20);
         }
     }
 

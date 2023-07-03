@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
         app:cardBackgroundColor="@color/fg_color"
-        app:cardCornerRadius="6dp">
+        app:cardCornerRadius="8dp">
 
         <RelativeLayout
             android:id="@+id/rl_group"

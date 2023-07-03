@@ -90,7 +90,7 @@ public class GroupDocumentActivity extends AppCompatActivity implements View.OnC
 
     private void setImageAdapter() {
         rv_group_doc.setHasFixedSize(true);
-        rv_group_doc.setLayoutManager(new GridLayoutManager((Context) GroupDocumentActivity.this, 2, RecyclerView.VERTICAL, false));
+        rv_group_doc.setLayoutManager(new GridLayoutManager((Context) GroupDocumentActivity.this, 1, RecyclerView.VERTICAL, false));
         imageAdapter = new ImageAdapter(GroupDocumentActivity.this, imagesList);
         rv_group_doc.setAdapter(imageAdapter);
     }
@@ -130,6 +130,7 @@ public class GroupDocumentActivity extends AppCompatActivity implements View.OnC
                 String outputFilePath = outputDir + File.separator + Constant.group_current.getGroupName() + ".pdf";
 
                 ImageToPdfConverter.convertToPdf(imageDatas, outputFilePath);
+                Toast.makeText(this, "Create file pdf success", Toast.LENGTH_SHORT).show();
                 return;
             case R.id.iv_doc_camera:
                 Constant.inputType = "GroupItem";

@@ -35,6 +35,7 @@ import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraView;
 import com.otaliastudios.cameraview.PictureResult;
 import com.otaliastudios.cameraview.VideoResult;
+import com.otaliastudios.cameraview.controls.Facing;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -108,6 +109,20 @@ public class ScannerActivity extends AppCompatActivity {
                 }
             case R.id.iv_gallery:
                 openImagePicker();
+                return;
+            case R.id.iv_switch_camera:
+
+                if (cameraView != null) {
+                    Facing facing = cameraView.getFacing();
+
+                    if (facing == Facing.BACK) {
+                        cameraView.setFacing(Facing.FRONT);
+                    } else {
+                        cameraView.setFacing(Facing.BACK);
+                    }
+//                    cameraView.setFacing(i);
+                    return;
+                }
                 return;
         }
     }

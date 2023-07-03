@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
+            android:background="@color/bg_color1"
             android:elevation="5dp">
 
             <ImageView
@@ -26,7 +26,9 @@
                 android:layout_marginStart="2dp"
                 android:onClick="onClick"
                 android:padding="7dp"
-                android:src="@drawable/ic_back" />
+
+                android:src="@drawable/ic_close"
+                android:backgroundTint="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,7 +49,9 @@
                 android:layout_marginEnd="7dp"
                 android:onClick="onClick"
                 android:padding="7dp"
-                android:src="@drawable/ic_check_mark" />
+
+                android:src="@drawable/ic_check_mark"
+              />
         </RelativeLayout>
 
         <RelativeLayout
@@ -78,10 +82,10 @@
                         android:padding="12dp"
 
                         app:civAutoScanEnable="true"
-                        app:civLineColor="@color/light_txt_color"
-                        app:civMagnifierCrossColor="@color/light_txt_color"
-                        app:civPointColor="@color/light_txt_color"
-                        app:civPointFillColor="@color/light_txt_color"
+                        app:civLineColor="@color/subscribe_dialog_one_text"
+                        app:civMagnifierCrossColor="@color/subscribe_dialog_one_text"
+                        app:civPointColor="@color/text_second"
+                        app:civPointFillColor="@color/unselected_txt_color"
                         app:civShowEdgeMidPoint="true"
                         app:civShowGuideLine="true" />
                 </FrameLayout>
@@ -93,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:background="#6a5acd"
+                android:background="@color/black"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="12dp"
@@ -105,37 +109,24 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/iv_retake"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/white_bg"
-
-                        android:gravity="center"
                         android:onClick="onClick"
                         android:padding="5dp"
-                        android:text="capture again"
-                        android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:src="@drawable/arrow_left_alt"
+                        />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/iv_Rotate_Doc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/white_bg"
-
-                        android:gravity="center"
                         android:onClick="onClick"
                         android:padding="5dp"
-                        android:text="@string/rotateDoc"
-                        android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:src="@drawable/refresh"  />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>

@@ -14,7 +14,6 @@ import com.example.cscan.models.User;
 import java.util.Date;
 
 public class Constant {
-    public static Bitmap IDCardBitmap = null;
     public static String IdentifyActivity = "IdentifyActivity";
 
     public static String inputType = "Group";

@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="5dp"
-                android:background="@color/white"
+                android:background="@color/black"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -37,8 +37,8 @@
                         android:layout_marginStart="2dp"
                         android:onClick="onClick"
                         android:padding="7dp"
-                        android:src="@drawable/ic_back"
-                        app:tint="@color/black" />
+                        android:src="@drawable/ic_close"
+                        app:tint="@color/white" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#6a5acd"
+                android:background="@color/black"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -98,7 +98,7 @@
                         android:layout_weight="1"
                         android:onClick="onClick"
                         android:padding="5dp"
-                        android:src="@drawable/ic_gallery" />
+                        android:src="@drawable/gallery" />
 
                     <ImageView
                         android:id="@+id/iv_take_picture"
