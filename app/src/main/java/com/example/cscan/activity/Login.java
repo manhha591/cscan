@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
 
         btn_reg = findViewById(R.id.btnRegInLayoutLog);
         btn_login = findViewById(R.id.btnLogin);
@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-
+ 
     private void callApiLogin(User user, CallbackUser callback) {
         IApiUserService.apiService.login(user)
                 .enqueue(new Callback<User>() {

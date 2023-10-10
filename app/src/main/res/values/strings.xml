@@ -26,4 +26,10 @@
     <string name="username">username</string>
     <string name="repassword">repassword</string>
     <string name="phonenumber">Phone number</string>
+    <string name="createNewFolder">Create New Folder</string>
+    <string name="enterFolderName">Enter folder name</string>
+    <string name="create">Create</string>
+
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
 </resources>

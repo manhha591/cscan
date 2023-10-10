@@ -90,7 +90,7 @@ public class GroupDocumentActivity extends AppCompatActivity implements View.OnC
 
     private void setImageAdapter() {
         rv_group_doc.setHasFixedSize(true);
-        rv_group_doc.setLayoutManager(new GridLayoutManager((Context) GroupDocumentActivity.this, 1, RecyclerView.VERTICAL, false));
+        rv_group_doc.setLayoutManager(new GridLayoutManager((Context) GroupDocumentActivity.this, 2, RecyclerView.VERTICAL, false));
         imageAdapter = new ImageAdapter(GroupDocumentActivity.this, imagesList);
         rv_group_doc.setAdapter(imageAdapter);
     }

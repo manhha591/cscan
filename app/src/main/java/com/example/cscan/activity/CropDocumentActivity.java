@@ -27,6 +27,11 @@ import com.example.cscan.models.GroupImage;
 import com.example.cscan.models.Images;
 import com.example.cscan.service.IApiUserService;
 import com.example.cscan.service.InsertGroupCallback;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.chinese.ChineseTextRecognizerOptions;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -99,11 +104,11 @@ public class CropDocumentActivity extends AppCompatActivity {
                 if (iv_preview_crop.canRightCrop()) {
 
                     Constant.original = iv_preview_crop.crop();
-
+                    getText(Constant.original);
                     if (Constant.inputType.equals("Group")) {
                         group_name = "CamScanner" + Constant.getDateTime("_ddMMHHmmss");
                         group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
-                        insertGroupImage(group_name, group_date, 1, new InsertGroupCallback() {
+                        insertGroupImage(group_name, group_date, Constant.Image.getDataTypeId(), new InsertGroupCallback() {
                             @Override
                             public void onGroupInserted(GroupImage group) {
                                 Constant.group_current = group;
@@ -145,8 +150,10 @@ public class CropDocumentActivity extends AppCompatActivity {
         iv_preview_crop.setImageBitmap(AdjustUtil.changeBitmapContrastBrightness(original, 1.0f, brightness));
     }
 
-    private void insertGroupImage(String group_name, String group_date, int userId, InsertGroupCallback callback) {
-        GroupImage group = new GroupImage(group_name, group_date, Constant.user_current.getUserId());
+
+
+    private void insertGroupImage(String group_name, String group_date, int dataTypeId, InsertGroupCallback callback) {
+        GroupImage group = new GroupImage(group_name, group_date, Constant.Image.getDataTypeId());
         IApiUserService.apiService.insertGroup(group)
                 .enqueue(new Callback<GroupImage>() {
                     @Override
@@ -194,7 +201,7 @@ public class CropDocumentActivity extends AppCompatActivity {
                 .enqueue(new Callback<Images>() {
                     @Override
                     public void onResponse(Call<Images> call, Response<Images> response) {
-                        if (response.isSuccessful()) {
+                         if (response.isSuccessful()) {
                             Images img = response.body();
                             System.out.println(img);
                             //Toast.makeText(CropDocumentActivity.this, "!", Toast.LENGTH_LONG).show();
@@ -217,6 +224,26 @@ public class CropDocumentActivity extends AppCompatActivity {
         finish();
         return;
     }
+    TextRecognizer textRecognizer;
+    private void getText(Bitmap bitmap) {
+        textRecognizer = TextRecognition.getClient(new ChineseTextRecognizerOptions.Builder().build());
+        InputImage image = InputImage.fromBitmap(bitmap, 0);
+        textRecognizer.process(image)
+                .addOnSuccessListener(visionText -> {
 
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (Text.TextBlock textBlock : visionText.getTextBlocks()) {
+                        for (Text.Line textLines : textBlock.getLines()) {
+                            stringBuilder.append(textLines.getText()).append(" ");
+                        }
+                        stringBuilder.append("\n");
+                    }
+                    if (stringBuilder.toString().isEmpty()) {
+                        System.out.println("None");
+                    } else {
+                        System.out.println(stringBuilder.toString());
+                    }
+                }).addOnFailureListener(f ->   System.out.println("None"));
+    }
 
 }

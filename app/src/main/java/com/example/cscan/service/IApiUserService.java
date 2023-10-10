@@ -1,6 +1,9 @@
 package com.example.cscan.service;
 
 import com.example.cscan.models.ChangePasswordRequest;
+import com.example.cscan.models.DataTypes;
+import com.example.cscan.models.Datas;
+import com.example.cscan.models.Documents;
 import com.example.cscan.models.GroupImage;
 import com.example.cscan.models.Images;
 import com.example.cscan.models.User;
@@ -20,7 +23,7 @@ import retrofit2.http.Path;
 public interface IApiUserService {
 
     IApiUserService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.142.241:5000/")
+            .baseUrl("http://192.168.38.241:5000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(IApiUserService.class);
@@ -51,5 +54,24 @@ public interface IApiUserService {
     Call<List<GroupImage>> getAllGroup(@Path("userId") int userId);
     @DELETE("api/Images/deleteImage/{imageId}")
     Call<Void> deleteImage(@Path("imageId") int imageId);
+
+    @POST("api/Documents/InsertDocument")
+    Call<Documents> insertDocument(@Body Documents documents);
+
+    @GET("api/Documents/GetAllDocument/{userId}")
+    Call<List<Documents>> getAllDocument(@Path("userId") int userId);
+
+    @DELETE("api/Documents/DeleteDocument/{ducumentId}")
+    Call<Void> DeleteDocument(@Path("ducumentId") int ducumentId);
+
+
+    @POST("api/DataTypes/InsertDataType")
+    Call<DataTypes> InsertDataType(@Body DataTypes dataTypes);
+
+    @GET("api/DataTypes/getAllDataType/{documentId}")
+    Call<List<DataTypes>> getAllDataType(@Path("documentId") int documentId);
+
+    @POST("api/Datas/InsertData")
+    Call<Datas> InsertData(@Body Datas datas);
 }
 

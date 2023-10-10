@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color1"
+    android:orientation="vertical">
+
+    <!-- ActionBar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/fg_color"
+        android:elevation="5dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:onClick="onClick"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/selected_txt_color" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/iv_back"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/txt_color"
+            android:textSize="18sp" />
+        <RelativeLayout
+            android:id="@+id/rl_search_bar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="7dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/search_bar_bg"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/iv_close_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:onClick="onClick"
+                android:padding="7dp"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/iv_clear_txt"
+                android:layout_toEndOf="@+id/iv_close_search"
+                android:background="@color/transparent"
+                android:cursorVisible="true"
+                android:focusable="true"
+                android:hint="Search for Document..."
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textColor="#858997"
+                android:textColorHint="#a2a8b9"
+                android:textSize="12dp" />
+
+            <ImageView
+                android:id="@+id/iv_clear_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:onClick="onClick"
+                android:padding="5dp"
+                android:src="@drawable/ic_close"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- Content Area -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="3dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/rounded_bg"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_group_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:onClick="onClick"
+                android:src="@drawable/ic_camera" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

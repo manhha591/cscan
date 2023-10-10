@@ -8,16 +8,16 @@ public class GroupImage {
 
     private String groupDate;
 
-    private int userId;
+    private int dataTypeId;
 
     public GroupImage() {
     }
 
-    public GroupImage(int groupId, String groupName, String groupDate, int userId) {
+    public GroupImage(int groupId, String groupName, String groupDate, int dataTypeId) {
         this.groupId = groupId;
         this.groupName = groupName;
         this.groupDate = groupDate;
-        this.userId = userId;
+        this.dataTypeId = dataTypeId;
     }
 
     public GroupImage(int groupid, String groupname, String groupdate) {
@@ -26,10 +26,10 @@ public class GroupImage {
         this.groupDate = groupdate;
     }
 
-    public GroupImage(String groupName, String groupDate, int userId) {
+    public GroupImage(String groupName, String groupDate, int dataTypeId) {
         this.groupName = groupName;
         this.groupDate = groupDate;
-        this.userId = userId;
+        this.dataTypeId = dataTypeId;
     }
 
     public int getGroupId() {
@@ -56,12 +56,12 @@ public class GroupImage {
         this.groupDate = groupDate;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getDataTypeId() {
+        return dataTypeId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setDataTypeId(int dataTypeId) {
+        this.dataTypeId = dataTypeId;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class GroupImage {
                 "groupId=" + groupId +
                 ", groupName='" + groupName + '\'' +
                 ", groupDate='" + groupDate + '\'' +
-                ", userId=" + userId +
+                ", dataTypeId=" + dataTypeId +
                 '}';
     }
 

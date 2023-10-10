@@ -1,10 +1,14 @@
 package com.example.cscan.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -33,13 +37,13 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register2);
 
         txt_user = findViewById(R.id.username);
         txt_email = findViewById(R.id.email);
         txt_sdt = findViewById(R.id.phonenumber);
         txt_pass = findViewById(R.id.password);
-        txt_repass = findViewById(R.id.repassword);
+//        txt_repass = findViewById(R.id.repassword);
 
         btn_reg = findViewById(R.id.btnReg);
         btn_reg.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +61,10 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-                if(txt_pass.length() != txt_repass.length()){
-                    showAlertDialog("Lỗi", "Mật khẩu không khớp");
-                    return;
-                }
+//                if(txt_pass.length() != txt_repass.length()){
+//                    showAlertDialog("Lỗi", "Mật khẩu không khớp");
+//                    return;
+//                }
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     showAlertDialog("Lỗi", "Email không hợp lệ");
@@ -83,7 +87,20 @@ public class Register extends AppCompatActivity {
             }
         });
     }
+//    private void changeStatusBarColor() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window window = getWindow();
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+////            window.setStatusBarColor(Color.TRANSPARENT);
+//            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
+//        }
+//    }
 
+    public void onLoginClick(View view){
+        startActivity(new Intent(this,Login.class));
+        overridePendingTransition(R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+    }
     private void showAlertDialog(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
         builder.setTitle(title)

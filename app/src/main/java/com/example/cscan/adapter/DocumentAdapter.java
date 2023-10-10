@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cscan.R;
-import com.example.cscan.activity.DataActivity;
 import com.example.cscan.activity.GroupDocumentActivity;
 import com.example.cscan.activity.MainActivity;
 import com.example.cscan.models.Documents;
@@ -22,20 +21,19 @@ import com.example.cscan.service.getListImageCallBack;
 
 import java.util.List;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
+public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.ViewHolder> {
 
     public Activity activity;
 
-    public List<GroupImage> List;
+    public List<Documents> List;
 
 
-    public GroupAdapter(Activity activity2, List<GroupImage> List2) {
+    public DocumentAdapter(Activity activity2, List<Documents> List2) {
         this.activity = activity2;
         this.List = List2;
-
     }
 
-    public void filterList(List<GroupImage> List2) {
+    public void filterList(List<Documents> List2) {
         this.List = List2;
         notifyDataSetChanged();
     }
@@ -48,41 +46,21 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
-        GroupDocumentActivity groupDocumentActivity = new GroupDocumentActivity();
-
-        groupDocumentActivity.getAllImage(List.get(i).getGroupId(), new getListImageCallBack() {
-            @Override
-            public void onGetListImageCallBack(List<Images> list) {
-                if (list != null && !list.isEmpty()) {
-                    Images firstImage = list.get(0);
-                    String firstImgData = firstImage.getImageData();
-                    viewHolder.iv_group_folder_img.setVisibility(View.GONE);
-                    viewHolder.iv_group_first_img.setVisibility(View.VISIBLE);
-                    // Sử dụng firstImgData ở đây, ví dụ:
-                    // Hiển thị hình ảnh đầu tiên trong ImageView
-                    Glide.with(activity)
-                            .load(firstImgData)
-                            .into(viewHolder.iv_group_first_img);
-                } else {
-                    viewHolder.iv_group_folder_img.setImageResource(R.drawable.ic_folder_fill);
-                    viewHolder.iv_group_folder_img.setVisibility(View.VISIBLE);
-                    viewHolder.iv_group_first_img.setVisibility(View.GONE);
-                }
-            }
-        });
-
-        viewHolder.tv_group_name.setText(List.get(i).getGroupName());
-        viewHolder.tv_group_date.setText(List.get(i).getGroupDate());
+        viewHolder.iv_group_folder_img.setImageResource(R.drawable.ic_folder_fill);
+        viewHolder.iv_group_folder_img.setVisibility(View.VISIBLE);
+        viewHolder.iv_group_first_img.setVisibility(View.GONE);
+        viewHolder.tv_group_name.setText(List.get(i).getDocumentName());
+       // viewHolder.tv_group_date.setText(List.get(i).getGroupDate());
         viewHolder.rl_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((DataActivity) activity).clickOnListItem((GroupImage) (List.get(i)));
+                ((MainActivity) activity).clickOnListItem(((Documents) List.get(i)));
             }
         });
         viewHolder.iv_group_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               ((DataActivity) activity).clickOnListMore((GroupImage) List.get(i));
+                ((MainActivity) activity).clickOnListMore(List.get(i));
             }
         });
     }
