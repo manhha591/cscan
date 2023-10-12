@@ -1,5 +1,6 @@
 package com.example.cscan.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -33,7 +34,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscan.R;
-import com.example.cscan.adapter.DataApdapter;
+
 import com.example.cscan.adapter.DocumentAdapter;
 import com.example.cscan.adapter.GroupAdapter;
 import com.example.cscan.db.DBHelper;
@@ -45,6 +46,7 @@ import com.example.cscan.models.Documents;
 import com.example.cscan.models.GroupImage;
 import com.example.cscan.models.ImageToPdfConverter;
 import com.example.cscan.models.Images;
+import com.example.cscan.service.CallbackService;
 import com.example.cscan.service.DeleteCallback;
 import com.example.cscan.service.IApiUserService;
 import com.example.cscan.service.InsertDocuentCallBack;
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 //                            for (Documents gp : documents) {
 //                                System.out.println(gp);
 //                            }
-                            Toast.makeText(MainActivity.this, "Call thành công!", Toast.LENGTH_LONG).show();
+                          //  Toast.makeText(MainActivity.this, "Call thành công!", Toast.LENGTH_LONG).show();
                             // Process the list of images as needed
                             callback.onGetListDocumentCallBack(documents);
                         } else {
@@ -231,13 +233,6 @@ public class MainActivity extends AppCompatActivity {
         //intent2.putExtra("current_group", current_group);
         startActivity(intent2);
     }
-//    public void clickOnListItem(GroupImage groupImage) {
-//        Constant.group_current = groupImage;
-//        current_group = Constant.group_current.getGroupName();
-//        Intent intent2 = new Intent(MainActivity.this, GroupDocumentActivity.class);
-//        intent2.putExtra("current_group", current_group);
-//        startActivity(intent2);
-//    }
 
     private void openNewFolderDialog() {
         final Dialog dialog = new Dialog(this);
@@ -412,125 +407,54 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickOnListMore(Documents documents) {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        View inflate = View.inflate(this, R.layout.group_bottomsheet_dialog, (ViewGroup) null);
+        View inflate = View.inflate(this, R.layout.document_more_dialog, (ViewGroup) null);
         final TextView tv_dialog_title = (TextView) inflate.findViewById(R.id.tv_dialog_title);
         tv_dialog_title.setText(documents.getDocumentName());
 //        ((TextView) inflate.findViewById(R.id.tv_dialog_date)).setText(groupImage.getGroupDate());
-
-        RelativeLayout rl_save_as_pdf = inflate.findViewById(R.id.rl_save_as_pdf);
-        RelativeLayout rl_share = inflate.findViewById(R.id.rl_share);
-        RelativeLayout rl_save_to_gallery = inflate.findViewById(R.id.rl_save_to_gallery);
-
-        rl_save_as_pdf.setOnClickListener(new View.OnClickListener() {
+        ((RelativeLayout) inflate.findViewById(R.id.rl_rename)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                GroupDocumentActivity.getAllImage(groupImage.getGroupId(), new getListImageCallBack() {
-//                    @Override
-//                    public void onGetListImageCallBack(List<Images> list) {
-//                        List<String> imageDatas = new ArrayList<>();
-//                        for (Images images : list) {
-//                            imageDatas.add(images.getImageData());
-//                        }
-//                        String outputDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-//                        String outputFilePath = outputDir + File.separator + groupImage.getGroupName() + ".pdf";
-//                        ImageToPdfConverter.convertToPdf(imageDatas, outputFilePath);
-//
-//                    }
-//                });
+                updateDocumentName(documents);
                 bottomSheetDialog.dismiss();
-
-
             }
         });
-//        rl_share.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // shareGroup(name);
-//                GroupDocumentActivity.getAllImage(groupImage.getGroupId(), new getListImageCallBack() {
-//                    @Override
-//                    public void onGetListImageCallBack(List<Images> list) {
-//                        List<String> imageDatas = new ArrayList<>();
-//                        for (Images images : list) {
-//                            imageDatas.add(images.getImageData());
-//                        }
-//                        String outputDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-//                        String outputFilePath = outputDir + File.separator + Constant.group_current.getGroupName() + ".pdf";
-//                        ImageToPdfConverter.convertToPdf(imageDatas, outputFilePath);
-//                        File file = new File(outputFilePath);
-//                        Uri pdfFileUri = FileProvider.getUriForFile(MainActivity.this, "com.example.fileprovider", file);
-//
-//                        // Tạo Intent chia sẻ
-//                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//                        shareIntent.setType("application/pdf");
-//                        shareIntent.putExtra(Intent.EXTRA_STREAM, pdfFileUri);
-//
-//                        // Mở hộp thoại chọn ứng dụng chia sẻ
-//                        startActivity(Intent.createChooser(shareIntent, "Share PDF File"));
-//                    }
-//                });
-//                bottomSheetDialog.dismiss();
-//            }
-//        });
-//        ((RelativeLayout) inflate.findViewById(R.id.rl_rename)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                updateGroupName(groupImage);
-//                bottomSheetDialog.dismiss();
-//            }
-//        });
-//        rl_save_to_gallery.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //new saveGroupToGallery(name).execute(new String[0]);
-//                GroupDocumentActivity.getAllImage(groupImage.getGroupId(), new getListImageCallBack() {
-//                    @Override
-//                    public void onGetListImageCallBack(List<Images> list) {
-//                        List<Images> imagesList = list;
-//                        for (Images images : imagesList) {
-//                            ImageUtils.saveImageToGallery(getApplicationContext(), images.getImageData());
-//                        }
-//                    }
-//                });
-//                bottomSheetDialog.dismiss();
-//            }
-//        });
-//
-//        ((RelativeLayout) inflate.findViewById(R.id.rl_delete)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//                builder.setTitle("Delete");
-//                builder.setMessage("You want to delete this group?");
-//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // Xử lý logic khi người dùng chọn xóa
-//                        // Thêm mã xóa ở đây
-//                        GroupDocumentActivity.deleteGroup(groupImage.getGroupId(), new DeleteCallback() {
-//                            @Override
-//                            public void onDeleteCompleted() {
-//                                onResume();
-//                            }
-//                        }, MainActivity.this);
-//                    }
-//                });
-//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // Xử lý logic khi người dùng chọn hủy
-//                        dialog.dismiss();
-//                    }
-//                });
-//                AlertDialog dialog = builder.create();
-//                dialog.show();
-//                bottomSheetDialog.dismiss();
-//            }
-//        });
+
+
+        ((RelativeLayout) inflate.findViewById(R.id.rl_delete)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Delete");
+                builder.setMessage("You want to delete this document?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                       deleteDocument(documents.getDocumentId(), new DeleteCallback() {
+                            @Override
+                            public void onDeleteCompleted() {
+                                onResume();
+                            }
+                        }, MainActivity.this);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Xử lý logic khi người dùng chọn hủy
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                bottomSheetDialog.dismiss();
+            }
+        });
         bottomSheetDialog.setContentView(inflate);
         bottomSheetDialog.show();
     }
 
-    private void updateGroupName(GroupImage groupImage) {
+    private void updateDocumentName(Documents documents) {
         final Dialog dialog = new Dialog(this, R.style.ThemeWithRoundShape);
         dialog.requestWindowFeature(1);
         dialog.setContentView(R.layout.update_group_name);
@@ -539,7 +463,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         final EditText editText = (EditText) dialog.findViewById(R.id.et_group_name);
-        editText.setText(groupImage.getGroupName());
+        editText.setText(documents.getDocumentName());
         editText.setSelection(editText.length());
         ((TextView) dialog.findViewById(R.id.tv_done)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -548,11 +472,13 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please Enter Valid Document Name!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                        upDateGroup(groupImage, editText.getText().toString());
+                    upDateDocument(documents, editText.getText().toString(), new CallbackService() {
+                        @Override
+                        public void onCallbackService() {
+                            onResume();
+                        }
+                    });
                     dialog.dismiss();
-
-                    onResume();
-
                 }
 
             }
@@ -563,19 +489,19 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+        onResume();
         dialog.show();
     }
 
-    private void upDateGroup(GroupImage groupImage, String group_name) {
-        groupImage.setGroupName(group_name);
-        IApiUserService.apiService.updateGroup(groupImage)
-                .enqueue(new Callback<GroupImage>() {
+    private void upDateDocument(Documents documents, String document_name, CallbackService callback) {
+        documents.setDocumentName(document_name);
+        IApiUserService.apiService.updateDocument(documents)
+                .enqueue(new Callback<Documents>() {
                     @Override
-                    public void onResponse(Call<GroupImage> call, Response<GroupImage> response) {
+                    public void onResponse(Call<Documents> call, Response<Documents> response) {
                         if (response.isSuccessful()) {
-                            GroupImage group_current = response.body();
-                            onResume();
-
+                            Documents documents1 = response.body();
+                            callback.onCallbackService();
                         } else {
                             Toast.makeText(MainActivity.this, "Name already exist", Toast.LENGTH_SHORT).show();
                             // Toast.makeText(CropDocumentActivity.this, "Đăng kí thất bại!", Toast.LENGTH_LONG).show();
@@ -586,13 +512,13 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(retrofit2.Call<GroupImage> call, Throwable t) {
+                    public void onFailure(retrofit2.Call<Documents> call, Throwable t) {
                         //Toast.makeText(GroupDocumentActivity.this, "Call api error", Toast.LENGTH_LONG).show();
                     }
                 });
     }
     private void insertDocument(String folderName, InsertDocuentCallBack callback) {
-        Documents documents = new Documents(folderName, Constant.user_current.getUserId());
+        Documents documents = new Documents(folderName, Constant.user_current.getUserId(), Constant.getDateTime("yyyy-MM-dd  hh:mm a"));
         IApiUserService.apiService.insertDocument(documents)
                 .enqueue(new Callback<Documents>() {
                     @Override
@@ -616,4 +542,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+    public  void deleteDocument(int documentId, DeleteCallback callback, Activity activity) {
+        IApiUserService.apiService.deleteDocument(documentId)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            callback.onDeleteCompleted();
+                            Toast.makeText(activity, "Delete succes!", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(activity, "Đăng kí thất bại!", Toast.LENGTH_LONG).show();
+                            Log.e("API Response", "Request URL: " + call.request().url());
+                            Log.e("API Response", "Response Code: " + response.code());
+                            Log.e("API Response", "Response Message: " + response.message());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        //Toast.makeText(GroupDocumentActivity.this, "Call api error", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
 }

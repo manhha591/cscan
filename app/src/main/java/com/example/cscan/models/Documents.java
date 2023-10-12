@@ -8,6 +8,21 @@ public class Documents {
 
     private int userId;
 
+    public Documents(String documentName, int userId, String date) {
+        this.documentName = documentName;
+        this.userId = userId;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    private String date;
     public Documents() {
     }
 

@@ -15,8 +15,9 @@
         android:singleLine="true"
         android:text="Setting Account"
         android:background="@drawable/rounded_top_corners"
-        android:backgroundTint="#6a5acd"
+        android:backgroundTint="#00ADC1"
         android:textColor="@color/bg_color"
+        android:textStyle="bold"
         android:textSize="20dp" />
 
     <ScrollView
@@ -164,10 +165,12 @@
                     android:id="@+id/txt_LogOut"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="#6a5acd"
+                    android:background="#00ADC1"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="Log Out"
+                    android:backgroundTint="#00ADC1"
+                    android:textStyle="bold"
                     android:textColor="@color/bg_color"
                     android:textSize="20dp" />
 

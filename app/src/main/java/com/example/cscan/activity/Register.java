@@ -122,10 +122,10 @@ public class Register extends AppCompatActivity {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
                             User u1 = response.body();
-                            Toast.makeText(Register.this, "Đăng kí thành công!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Register.this, "Success!", Toast.LENGTH_LONG).show();
                             callback.onCallbackUser(u1);
                         } else {
-                            Toast.makeText(Register.this, "Đăng kí thất bại!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Register.this, "Fail!", Toast.LENGTH_LONG).show();
                             Log.e("API Response", "Request URL: " + call.request().url());
                             Log.e("API Response", "Response Code: " + response.code());
                             Log.e("API Response", "Response Message: " + response.message());

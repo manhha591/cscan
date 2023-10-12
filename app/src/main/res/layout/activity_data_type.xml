@@ -40,13 +40,15 @@
 
     <!-- Content Area -->
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <!-- Button 1 -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/LlDoc"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:orientation="horizontal">
@@ -69,7 +71,8 @@
 
         <!-- Button 2 -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/LlPdf"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:orientation="horizontal">
@@ -92,7 +95,7 @@
 
         <!-- Button 3 -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:orientation="horizontal">

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.templatemela.camscanner"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
@@ -18,6 +18,7 @@ android {
             abiFilters 'armeabi-v7a', "arm64-v8a", 'x86', 'x86_64'
         }
     }
+
 
     buildTypes {
         release {
@@ -82,4 +83,5 @@ dependencies {
     implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
 }

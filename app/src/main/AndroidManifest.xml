@@ -30,11 +30,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light"
         android:usesCleartextTraffic="true"
+        android:largeHeap="true"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.PdfViewerActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.DataActivity"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".activity.dataTypeActivity"
             android:exported="false"
@@ -55,6 +59,16 @@
             android:name=".activity.Register"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OcrActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+        <activity
+            android:name=".activity.EditActivity"
+            android:exported="false"
+            android:label="@string/edit"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="false"

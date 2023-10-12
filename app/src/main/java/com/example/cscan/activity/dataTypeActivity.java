@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cscan.R;
@@ -61,6 +62,8 @@ public class dataTypeActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        TextView tv_title = findViewById(R.id.tv_title);
+        tv_title.setText(Constant.document_current.getDocumentName());
         ListDataType= null;
         getAllDataType(Constant.document_current.getDocumentId(), new getListDataTypeCallBack() {
             @Override

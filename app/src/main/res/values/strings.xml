@@ -32,4 +32,13 @@
 
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
+    <string name="saveAsDoc">Save as doc</string>
+    <string name="copied">Copied</string>
+    <string name="processing___">processing...\n</string>
+    <string name="nothing">Ai could not find anything</string>
+    <string name="ocr">OCR</string>
+    <string name="photo">Photo\n</string>
+    <string name="copy">Copy</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
 </resources>

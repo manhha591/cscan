@@ -50,67 +50,34 @@
             android:paddingStart="3dp"
             android:paddingEnd="3dp">
 
+
             <RelativeLayout
-                android:id="@+id/rl_save_as_pdf"
+                android:id="@+id/rl_rename"
                 android:layout_width="match_parent"
                 android:layout_height="42dp">
 
                 <ImageView
-                    android:id="@+id/iv_save_pdf"
+                    android:id="@+id/iv_rename"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:padding="1dp"
-                    android:src="@drawable/pdf" />
+                    android:src="@drawable/ic_rename" />
 
                 <TextView
-                    android:id="@+id/txtSavePdf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="15dp"
-                    android:layout_toEndOf="@+id/iv_save_pdf"
-                    android:text="@string/saveAsPdf"
+                    android:layout_toEndOf="@+id/iv_rename"
+                    android:text="@string/rename"
                     android:textColor="@color/txt_color"
                     android:textSize="13dp" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#888888"
                     android:layout_alignParentBottom="true"
-                    />
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:id="@+id/rl_save_as_doc"
-                android:layout_width="match_parent"
-                android:layout_height="42dp">
-
-                <ImageView
-                    android:id="@+id/iv_save_doc"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:padding="1dp"
-                    android:src="@drawable/doc" />
-
-                <TextView
-                    android:id="@+id/txtSaveDoc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_toEndOf="@+id/iv_save_doc"
-                    android:text="@string/saveAsDoc"
-                    android:textColor="@color/txt_color"
-                    android:textSize="13dp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#888888"
-                    android:layout_alignParentBottom="true"
-                    />
+                    android:background="#888888" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -134,66 +101,6 @@
                     android:layout_marginStart="15dp"
                     android:layout_toEndOf="@+id/iv_share"
                     android:text="@string/share"
-                    android:textColor="@color/txt_color"
-                    android:textSize="13dp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#888888"
-                    android:layout_alignParentBottom="true"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_rename"
-                android:layout_width="match_parent"
-                android:layout_height="42dp">
-
-                <ImageView
-                    android:id="@+id/iv_rename"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_rename" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_toEndOf="@+id/iv_rename"
-                    android:text="@string/rename"
-                    android:textColor="@color/txt_color"
-                    android:textSize="13dp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#888888"
-                    android:layout_alignParentBottom="true"
-                    />
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:id="@+id/rl_save_to_gallery"
-                android:layout_width="match_parent"
-                android:layout_height="42dp">
-
-                <ImageView
-                    android:id="@+id/iv_save_gallery"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:padding="1dp"
-                    android:src="@drawable/ic_save_as_gallery" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_toEndOf="@+id/iv_save_gallery"
-                    android:text="@string/saveToGallery"
                     android:textColor="@color/txt_color"
                     android:textSize="13dp" />
                 <View

@@ -102,9 +102,7 @@ public class CropDocumentActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.iv_done:
                 if (iv_preview_crop.canRightCrop()) {
-
                     Constant.original = iv_preview_crop.crop();
-                    getText(Constant.original);
                     if (Constant.inputType.equals("Group")) {
                         group_name = "CamScanner" + Constant.getDateTime("_ddMMHHmmss");
                         group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
@@ -223,27 +221,6 @@ public class CropDocumentActivity extends AppCompatActivity {
         startActivity(intent2);
         finish();
         return;
-    }
-    TextRecognizer textRecognizer;
-    private void getText(Bitmap bitmap) {
-        textRecognizer = TextRecognition.getClient(new ChineseTextRecognizerOptions.Builder().build());
-        InputImage image = InputImage.fromBitmap(bitmap, 0);
-        textRecognizer.process(image)
-                .addOnSuccessListener(visionText -> {
-
-                    StringBuilder stringBuilder = new StringBuilder();
-                    for (Text.TextBlock textBlock : visionText.getTextBlocks()) {
-                        for (Text.Line textLines : textBlock.getLines()) {
-                            stringBuilder.append(textLines.getText()).append(" ");
-                        }
-                        stringBuilder.append("\n");
-                    }
-                    if (stringBuilder.toString().isEmpty()) {
-                        System.out.println("None");
-                    } else {
-                        System.out.println(stringBuilder.toString());
-                    }
-                }).addOnFailureListener(f ->   System.out.println("None"));
     }
 
 }

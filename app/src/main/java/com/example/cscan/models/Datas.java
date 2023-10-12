@@ -4,17 +4,34 @@ public class Datas {
 
     private int dataId;
 
-    private String dataname;
+    private String dataName;
 
     private String dataValue;
 
     private int dataTypeId;
 
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Datas(String dataName, String dataValue, int dataTypeId, String date) {
+        this.dataName = dataName;
+        this.dataValue = dataValue;
+        this.dataTypeId = dataTypeId;
+        this.date = date;
+    }
+
     public Datas() {
     }
 
-    public Datas(String dataname, String dataValue, int dataTypeId) {
-        this.dataname = dataname;
+    public Datas(String dataName, String dataValue, int dataTypeId) {
+        this.dataName = dataName;
         this.dataValue = dataValue;
         this.dataTypeId = dataTypeId;
     }
@@ -27,12 +44,12 @@ public class Datas {
         this.dataId = dataId;
     }
 
-    public String getDataname() {
-        return dataname;
+    public String getDataName() {
+        return dataName;
     }
 
-    public void setDataname(String dataname) {
-        this.dataname = dataname;
+    public void setDataName(String dataName) {
+        this.dataName = dataName;
     }
 
     public String getDataValue() {

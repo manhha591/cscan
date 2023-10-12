@@ -60,9 +60,10 @@ public interface IApiUserService {
 
     @GET("api/Documents/GetAllDocument/{userId}")
     Call<List<Documents>> getAllDocument(@Path("userId") int userId);
-
-    @DELETE("api/Documents/DeleteDocument/{ducumentId}")
-    Call<Void> DeleteDocument(@Path("ducumentId") int ducumentId);
+    @PUT("api/Documents/updateDocument")
+    Call<Documents> updateDocument(@Body Documents documents);
+    @DELETE("api/Documents/deleteDocument/{ducumentId}")
+    Call<Void> deleteDocument(@Path("ducumentId") int ducumentId);
 
 
     @POST("api/DataTypes/InsertDataType")
@@ -73,5 +74,14 @@ public interface IApiUserService {
 
     @POST("api/Datas/InsertData")
     Call<Datas> InsertData(@Body Datas datas);
+
+    @GET("api/Datas/getAllData/{typeDataId}")
+    Call<List<Datas>> getAllData(@Path("typeDataId") int typeDataId);
+
+    @DELETE("api/Datas/deleteData/{dataId}")
+    Call<Void> deleteData(@Path("dataId") int dataId);
+
+    @PUT("api/Datas/UpdateData")
+    Call<Datas> UpdateData(@Body Datas datas);
 }
 
